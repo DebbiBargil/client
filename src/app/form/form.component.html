@@ -1,0 +1,39 @@
+
+<form #myForm="ngForm">
+    <div>
+        <label>שם פרטי:</label>
+        <input type="text" required [(ngModel)]="parent.FirstName" name="firstName" required>
+    </div>
+    <div>
+        <label>שם משפחה:</label>
+        <input type="text" required [(ngModel)]="parent.LastName" name="LastName" required>
+    </div>
+    <div>
+        <label>תז:</label>
+        <input type="text" [(ngModel)]="parent.IdNumber" name="IdNumber" required  minlength="9" maxlength="9">
+    </div>
+  
+    <div>
+         <label>מין:</label>
+        <select name="MaleOrFemale" disableRipple [(ngModel)]="parent.maleOrFemale" required>
+            <option value="1">בן</option>
+            <option value="2">בת</option>
+        </select>
+    </div>
+    <div>
+        <label>תאריך לידה</label>
+        <input type="date" [(ngModel)]="parent.BirthDate" name="BirthDate" required>
+      </div>
+    <div>
+        <label>קופת חולים:</label>
+        <input type="text" [(ngModel)]="parent.Hmo" name="Hmo" required> 
+    </div>
+    <button (click)="AddChild()">הוסף ילד</button>
+<div *ngFor="let child of parent.Children">
+    
+    <app-child-form [child]="child"></app-child-form>
+</div>
+
+<button (click)="send()" [disabled]="!myForm.valid" > שמירה</button>
+
+</form>
